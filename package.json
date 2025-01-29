@@ -2,13 +2,11 @@
   "name": "fikastunden",
   "private": true,
   "version": "1.0.8",
-  "main": "src/main.js",
   "type": "module",
-  "main": "main.js",
   "scripts": {
     "dev": "vite",
-    "preview": "vite preview",
-    "start": "vite"
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "devDependencies": {
     "prettier": "^3.3.1",
