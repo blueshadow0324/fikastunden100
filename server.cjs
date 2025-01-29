@@ -65,6 +65,9 @@ app.post("/send-order", (req, res) => {
   });
 });
 
+const port = process.env.PORT || 0; // Let the OS pick an available port
+
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
