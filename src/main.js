@@ -2,15 +2,18 @@ import express from "express";
 const app = express();
 import cors from "cors";
 import nodemailer from "nodemailer"
+import path from "path";
+import { fileURLToPath } from "url";
 
-const port = process.env.PORT || 3000; // Use Render's assigned port or default to 3000 locally
+const port = process.env.PORT || 0; // Use Render's assigned port or default to 3000 locally
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
 
-// ✅ Serve static files from the "public" folder
-app.use(express.static(path.join(__dirname, "public")));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename); // ✅ This mimics __dirname in CommonJS
+
 
 // ✅ Serve index.html as the default page
 app.get("/", (req, res) => {
