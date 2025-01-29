@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.8",
   "type": "module",
+  "main": "main.js",
   "scripts": {
     "dev": "vite",
     "preview": "vite preview",
