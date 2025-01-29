@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.8",
   "type": "module",
+  "main": "src/main.cjs",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
