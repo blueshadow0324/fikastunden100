@@ -2,6 +2,7 @@
   "name": "fikastunden",
   "private": true,
   "version": "1.0.8",
+  "main": "src/main.js"
   "type": "module",
   "scripts": {
     "dev": "vite",
