@@ -1,9 +1,18 @@
-const express = require("express");
-const cors = require("cors");
-const nodemailer = require("nodemailer");
+import express from "express";
+const app = express();
+import cors from "cors";
+import nodemailer from "nodemailer"
 
-const app = express(); // Create an instance of express
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000; // Use Render's assigned port or default to 3000 locally
+
+app.get("/", (req, res) => {
+    res.send("Hello, World!");
+});
+
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+});
+
 
 // Middleware
 app.use(cors());
@@ -65,13 +74,3 @@ app.post("/send-order", (req, res) => {
     });
 });
 
-
-// Define a simple route to verify it's working
-app.get("/", (req, res) => {
-    res.send("Hello, World!");
-});
-
-// Start the server
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-});
