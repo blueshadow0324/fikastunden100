@@ -2,8 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
 
-const app = express();
-const PORT = 3000;
+const app = express(); // Create an instance of express
+const port = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
@@ -65,10 +65,13 @@ app.post("/send-order", (req, res) => {
   });
 });
 
-const port = process.env.PORT || 0; // Let the OS pick an available port
 
+// Define a simple route to verify it's working
+app.get("/", (req, res) => {
+  res.send("Hello, World!");
+});
 
 // Start the server
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
