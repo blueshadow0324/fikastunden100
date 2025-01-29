@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kolakakor</title>
+  <link rel="stylesheet" href="kolakakor.css">
+</head>
+<body>
+<header>
+  <div class="top-bar">
+    <h1>Fikastunden</h1>
+    <nav>
+      <a href="index.html">Hem</a>
+      <a href="#">Produkter</a>
+      <a href="#">Om oss</a>
+      <a href="#">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section>
+    <h2>Kolakakor</h2>
+    <img src="kolakakor.jpeg" alt="Kolakakor">
+    <p class="price">Price: <span>29,00 kr</span></p>
+    <p>Delicious buttery cookies perfect for fika.</p>
+
+    <!-- Add to Cart Button -->
+    <button id="add-to-cart">Add to Cart</button>
+  </section>
+</main>
+
+<script>
+  // Add to Cart Button functionality (basic)
+  document.getElementById('add-to-cart').addEventListener('click', function() {
+    alert('Kolakakor has been added to your cart!');
+  });
+</script>
+</body>
+</html>

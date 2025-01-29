@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produkter - Fikastunden</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/x-icon" href="fikastunden.ico">
+</head>
+
+<body>
+<header>
+  <div class="top-bar">
+    <h1>Fikastunden</h1>
+    <div class="search-login">
+      <input type="text" placeholder="Sök...">
+      <a href="#" onclick="toggleCart(event)">🛒</a>
+    </div>
+  </div>
+  <nav>
+    <a href="index.html">Hem</a>
+    <a href="produkter.html">Produkter</a>
+    <a href="omoss.html">Om oss</a>
+    <a href="kontakt.html">Kontakt</a>
+  </nav>
+</header>
+
+<main>
+  <section class="bestsellers">
+    <h2>Produkter</h2>
+    <div class="products">
+      <!-- Add additional items here -->
+      <div class="product">
+        <img src="kolakakor.jpeg" alt="Kolakakor">
+        <h3>Kolakakor</h3>
+        <p>29,00 kr</p>
+        <button class="add-to-cart" onclick="addToCart('Kolakakor', 29)">Lägg till i kundvagnen</button>
+      </div>
+
+      <div class="product">
+        <img src="chokladbollar.jpeg" alt="Chokladbollar">
+        <h3>Chokladbollar</h3>
+        <p>29,00 kr</p>
+        <button class="add-to-cart" onclick="addToCart('Chokladbollar', 29)">Lägg till i kundvagnen</button>
+      </div>
+
+      <div class="product">
+        <img src="pepparkakor.jpeg" alt="Pepparkakor">
+        <h3>Pepparkakor</h3>
+        <p>19,00 kr</p>
+        <button class="add-to-cart" onclick="addToCart('Pepparkakor', 19)">Lägg till i kundvagnen</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="cart-menu" id="cart-menu">
+  <div class="cart-header">
+    <span>Din kundvagn</span>
+    <button onclick="toggleCart(event)">✖</button>
+  </div>
+  <div class="cart-items" id="cart-items"></div>
+  <div class="cart-total">
+    Totalt: <span id="cart-total">0</span> kr
+  </div>
+  <div class="cart-buttons">
+    <button onclick="checkout()">Kassa</button>
+    <button onclick="clearCart()">Rensa</button>
+  </div>
+</div>
+
+<script>
+  const cartMenu = document.getElementById("cart-menu");
+  const cartItemsElement = document.getElementById("cart-items");
+  const cartTotalElement = document.getElementById("cart-total");
+  let cart = [];
+
+  // Load cart from localStorage on page load
+  function loadCart() {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      cart = JSON.parse(savedCart);
+      updateCart();
+    }
+  }
+
+  // Save cart to localStorage
+  function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+
+  // Toggle cart menu visibility
+  function toggleCart(event) {
+    if (event) event.preventDefault();
+    cartMenu.classList.toggle("open");
+  }
+
+  // Add item to cart
+  function addToCart(productName, productPrice) {
+    const existingItem = cart.find(item => item.name === productName);
+    if (existingItem) {
+      existingItem.quantity++;
+    } else {
+      cart.push({ name: productName, price: productPrice, quantity: 1 });
+    }
+    updateCart();
+    alert(productName + " har lagts till i kundvagnen!");
+  }
+
+  // Update cart UI
+  function updateCart() {
+    cartItemsElement.innerHTML = "";
+    let total = 0;
+
+    cart.forEach(item => {
+      total += item.price * item.quantity;
+      const cartItem = document.createElement("div");
+      cartItem.className = "cart-item";
+      cartItem.innerHTML = `
+        <span>${item.name} (x${item.quantity})</span>
+        <span>${item.price * item.quantity} kr</span>
+      `;
+      cartItemsElement.appendChild(cartItem);
+    });
+
+    cartTotalElement.textContent = total;
+    saveCart(); // Save the cart after every update
+  }
+
+  // Clear the cart
+  function clearCart() {
+    cart = [];
+    updateCart();
+  }
+
+  // Checkout functionality
+  function checkout() {
+    if (cart.length === 0) {
+      alert("Din kundvagn är tom!");
+      return;
+    }
+    alert("Tack för ditt köp!");
+    clearCart();
+    toggleCart();
+  }
+
+  // Load cart on page load
+  window.addEventListener("load", loadCart);
+</script>
+
+</body>
+</html>
